@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Logging;
-using Zs.Common.Data.Abstractions;
+using Zs.Common.Abstractions;
 
 namespace Zs.Bot.Data.SQLite;
 
