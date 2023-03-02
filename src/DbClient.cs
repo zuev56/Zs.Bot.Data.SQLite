@@ -6,7 +6,7 @@ namespace Zs.Bot.Data.SQLite;
 
 public sealed class DbClient : DbClientBase<SqliteConnection, SqliteCommand>
 {
-    public DbClient(string connectionString, ILogger<DbClient> logger = null)
+    public DbClient(string connectionString, ILogger<DbClient>? logger = null)
         : base(connectionString, logger)
     {
     }

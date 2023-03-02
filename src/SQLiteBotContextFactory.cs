@@ -16,7 +16,7 @@ public sealed class SQLiteBotContextFactory : IDbContextFactory<SQLiteBotContext
         _options = options;
     }
 
-    public SQLiteBotContext CreateDbContext() => new SQLiteBotContext(_options);
+    public SQLiteBotContext CreateDbContext() => new(_options);
 
     // For migrations
     public SQLiteBotContext CreateDbContext(string[] args)

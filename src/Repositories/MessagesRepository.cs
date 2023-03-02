@@ -16,12 +16,12 @@ public sealed class MessagesRepository<TContext> : MessagesRepositoryBase<TConte
     public MessagesRepository(
         IDbContextFactory<TContext> contextFactory,
         TimeSpan? criticalQueryExecutionTimeForLogging = null,
-        ILogger<MessagesRepository<TContext>> logger = null)
+        ILogger<MessagesRepository<TContext>>? logger = null)
         : base(contextFactory, criticalQueryExecutionTimeForLogging, logger)
     {
     }
 
-    public override async Task<Message> FindByRawDataIdsAsync(int rawMessageId, long rawChatId)
+    public override async Task<Message?> FindByRawDataIdsAsync(int rawMessageId, long rawChatId)
     {
         // TODO: Check telegram message update and correct query
         return await FindBySqlAsync(
@@ -51,10 +51,10 @@ public sealed class MessagesRepository<TContext> : MessagesRepositoryBase<TConte
 
             var messagesSinceDate = await FindAllBySqlAsync(selectChatMessagesSinceDate).ConfigureAwait(false);
 
-            foreach (var messageGroup in messagesSinceDate.GroupBy(m => m.UserId))
+            foreach (var messageGroup in messagesSinceDate.GroupBy(static m => m.UserId))
             {
                 userIdsAndMessageCounts.Add(messageGroup.Key, messageGroup.Count());
-            }     
+            }
         }
 
         return userIdsAndMessageCounts;
