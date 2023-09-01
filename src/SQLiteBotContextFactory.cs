@@ -5,7 +5,7 @@ namespace Zs.Bot.Data.SQLite;
 
 public sealed class SQLiteBotContextFactory : IDbContextFactory<SQLiteBotContext>, IDesignTimeDbContextFactory<SQLiteBotContext>
 {
-    private readonly DbContextOptions<SQLiteBotContext> _options;
+    private readonly DbContextOptions<SQLiteBotContext> _options = null!;
 
     public SQLiteBotContextFactory()
     {
@@ -22,7 +22,7 @@ public sealed class SQLiteBotContextFactory : IDbContextFactory<SQLiteBotContext
     public SQLiteBotContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<SQLiteBotContext>();
-        optionsBuilder.UseSqlite("Data Source=data.db;");
+        optionsBuilder.UseSqlite("Data Source=database.db;");
 
         return new SQLiteBotContext(optionsBuilder.Options);
     }
